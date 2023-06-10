@@ -1,6 +1,6 @@
 import { LoginPage } from "./LoginPage";
 
-class POmanager {
+export class POmanager {
 	constructor(page) {
 		this.page = page;
 
@@ -11,5 +11,3 @@ class POmanager {
 		return this.loginPage;
 	}
 }
-
-export default POmanager;
