@@ -3,7 +3,7 @@ import "dotenv/config";
 
 import POmanager from "../PageObjects/POmanager";
 
-test.only("Login to Jira", async ({ browser }) => {
+test("Login to Jira", async ({ browser }) => {
 	//Create browser context and page
 	const context = await browser.newContext();
 	const page = await context.newPage();
