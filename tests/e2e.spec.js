@@ -8,7 +8,8 @@ test("@E2E Login to Jira", async ({ page }) => {
 	//Define global and evironment variables
 	const email = process.env.USER_EMAIL;
 	const password = process.env.USER_PASSWORD;
-	const gadgetName = 'Z# Performance Objectives'
+	const dashboardName = 'Test Dashboard';
+	const gadgetName = 'Z# Performance Objectives';
 
 	// Login Page
 	const emailField = page.locator('[type="email"]');
@@ -32,8 +33,8 @@ test("@E2E Login to Jira", async ({ page }) => {
 	const gadgetItem = page.locator('//*[@id="dashboard"]/div/aside/div/div/div[2]/div', { has: page.locator('strong', { hasText: gadgetName })})
 	submitBtn = page.locator('button[type="submit"]')
 
-	await nameInput.fill('GuguGaga')
-	await descriptionInput.fill('GagaGugu')
+	await nameInput.fill(dashboardName)
+	await descriptionInput.fill('Test description')
 	await submitBtn.click()
 
 	await gadgetSearchBar.type('Z#')
@@ -47,7 +48,18 @@ test("@E2E Login to Jira", async ({ page }) => {
 	await page.frameLocator("iframe").getByText('Save', { exact: true }).nth(1).click({ force: true })
 	await page.locator('[aria-label="Minimize"]').click({ force: true })
 
-	// 
+	await page.locator('[aria-label="Expand"]').click({ force: true })
+	await page.frameLocator("iframe").getByText('Save', { exact: true }).nth(1).click({ force: true })
+
+	// Navigate back to Dashboards
+	await page.locator('button', { has: page.locator('span', { hasText: 'Dashboards'})}).click()
+	await page.locator('[role="group"]', { has: page.locator('span', {hasText: 'View all dashboards'}) }).click()
+
+	// Delete Dashboard
+	await page.reload({ waitUntil: 'domcontentloaded' })
+	await page.locator('tbody tr', { has: page.locator('td a', { hasText: dashboardName })}).locator('td').last().click()
+	await page.locator('div[role="group"] button', { has: page.locator('span', { hasText: 'Move to trash'})}).click()
+	await page.locator('section button span', { hasText: 'Move to trash'}).click()
 
 	await page.pause();
 });
