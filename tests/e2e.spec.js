@@ -40,16 +40,18 @@ test("@E2E Login to Jira", async ({ page }) => {
 	await gadgetItem.locator('button span', { hasText: 'Add'}).click()
 
 	// Gadget frame
-	// await page.pause()
+	await page.waitForSelector("iframe");
+	const iframeSN = page.frameLocator("iframe").locator("#data-set-name");	
+	await iframeSN.clear();
+	await iframeSN.fill("Narasyst Data");
+	await page.frameLocator("iframe").getByText('Save', { exact: true }).nth(1).click({ force: true })
+	await page.locator('[aria-label="Minimize"]').click({ force: true })
 
-	await page.waitForSelector('iframe')
-	const frameElement = await page.$('iframe');
-	console.log(await frameElement.contentFrame())
-
-	// const sourceNameInput = frame.locator('input[placeholder="Data"]');
-	// await page.frameLocator('[name="ap-iframe"]').locator('button', { hasText: 'Save' }).click();
+	// 
 
 	await page.pause();
 });
 
-// npx playwright test --grep "@E2E" --headed
+
+
+// npm run testE2E
