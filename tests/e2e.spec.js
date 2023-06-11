@@ -11,7 +11,7 @@ test("@E2E Login to Jira", async ({ page }) => {
 	const dashboardName = 'Test Dashboard';
 	const gadgetName = 'Z# Performance Objectives';
 
-	// Login Page
+	// Login To Page
 	const emailField = page.locator('[type="email"]');
 	const passwordField = page.locator('[type="password"]');
 	let submitBtn = page.locator("#login-submit");
@@ -64,6 +64,45 @@ test("@E2E Login to Jira", async ({ page }) => {
 	await page.pause();
 });
 
+test("@OOP Jira Test", async ({ page }) => {
+	// Define Test Payload
+	const email = process.env.USER_EMAIL;
+	const password = process.env.USER_PASSWORD;
+	const dashboardName = 'Test Dashboard';
+	const gadgetName = 'Z# Performance Objectives';
+
+	// Define Page Objects
+	const poManager = new POmanager(page);
+	const loginPage = poManager.getLoginPage();
+	const naviagteTo = poManager.getNavigateTo();
+	const dashboardPage = poManager.getDashboardPage();
+	const gadgetFrame = poManager.getGadgetFrame();
+
+	// Mount on page
+	await page.goto("https://narasyst-interns.atlassian.net");
+	
+	// Login To Page
+	await loginPage.logIn(email, password);
+
+	// Navigate Dashboards Page
+	await naviagteTo.dashboardsPage();
+
+	// Create Dashboard
+	await dashboardPage.createDashboard(dashboardName, 'Test Description');
+
+	// Add Gadget
+	await dashboardPage.addGadget(gadgetName);
+
+	// Configure Gadget
+	await gadgetFrame.editGadget('Narasyst Data');
+	await gadgetFrame.saveGadget();
+
+	// Navigate Back Dashboards Page
+	await naviagteTo.dashboardsPage();
+
+	// Delete Dashboard
+	await dashboardPage.deleteDashboard(dashboardName);
+})
 
 
 // npm run testE2E
