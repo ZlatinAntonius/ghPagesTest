@@ -8,9 +8,9 @@ export class LoginPage {
 		const passwordField = this.page.locator('[type="password"]');
 		const loginSubmitBtn = this.page.locator("#login-submit");
 
-		await emailField.type(email);
+		await emailField.fill(email);
 		await loginSubmitBtn.click();
-		await passwordField.type(password);
+		await passwordField.fill(password);
 		await loginSubmitBtn.click();
 	}
 }
