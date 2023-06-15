@@ -19,8 +19,11 @@ jobs:
       run: npm i
 
     - name: Run tests
-      run: npm test
+      run: npm testOOP
 
+    - name: Install Allure
+      run: |
+        choco install allure-commandline
     - name: Generate Allure report
       run: npm run report
 
