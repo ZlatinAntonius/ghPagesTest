@@ -17,7 +17,7 @@ jobs:
 
     - name: Use .env file
       env:
-        ENV_FILE: .env
+        ENV_FILE: ${{ secrets.ENV_FILE }}
       run: |
         # Run your commands that use the .env file
 
