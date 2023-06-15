@@ -19,7 +19,7 @@ jobs:
       run: npm i
 
     - name: Run tests
-      run: npm testOOP
+      run: npm run testOOP
 
     - name: Install Allure
       run: |
