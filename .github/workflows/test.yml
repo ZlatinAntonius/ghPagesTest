@@ -22,7 +22,7 @@ jobs:
       run: npm test
 
     - name: Generate Allure report
-      run: npx allure generate --clean
+      run: npm run report
 
     - name: Archive Allure report
       uses: actions/upload-artifact@v2
