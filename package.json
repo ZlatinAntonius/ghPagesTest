@@ -6,7 +6,7 @@
 	"scripts": {
 		"headedChrome": "npx palywright test tests/e2e.spec.js --headed --project=chromium",
 		"testE2E": "npx playwright test --grep @E2E --headed --reporter=line,allure-playwright",
-		"testOOP": "npx playwright test --grep @OOP --headed --reporter=line,allure-playwright",
+		"testOOP": "npx playwright test --grep @OOP --reporter=line,allure-playwright",
 		"report": "allure generate ./allure-results --clean && allure open"
 	},
 	"keywords": [],
