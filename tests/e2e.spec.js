@@ -36,7 +36,7 @@ test("@E2E Login to Jira", async ({ page }) => {
 	const nameInput = page.locator('input[name="name"]');
 	const descriptionInput = page.locator('textarea[name="description"]');
 	const gadgetSearchBar = page.locator('input[placeholder="Search gadgets"]');
-	const gadgetItem = page.locator(
+	const gadgetItem = page.locator( 
 		'//*[@id="dashboard"]/div/aside/div/div/div[2]/div',
 		{ has: page.locator("strong", { hasText: gadgetName }) }
 	);
@@ -131,7 +131,6 @@ test("@OOP Jira Test", async ({ page }) => {
 	// Configure Gadget
 	await gadgetFrame.editName("Narasyst Data");
 	await gadgetFrame.selectDateRange("2023-05-01", "2023-05-31");
-	await page.pause();
 	await gadgetFrame.saveGadget();
 
 	// Navigate Back Dashboards Page

@@ -16,7 +16,7 @@ export class DashboardPage{
     }
 
     async addGadget(gadgetName){
-        const gadgetSearchBar = this.page.locator('input[placeholder="Search gadgets"]')
+        const gadgetSearchBar = this.page.locator('input[aria-label="Search gadgets"]')
         await gadgetSearchBar.type(gadgetName)
         const gadgetItem = this.page.locator('//*[@id="dashboard"]/div/aside/div/div/div[2]/div', { has: this.page.locator('strong', { hasText: gadgetName })})
         await gadgetItem.locator('button span', { hasText: 'Add'}).click()    
