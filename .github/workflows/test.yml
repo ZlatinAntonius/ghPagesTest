@@ -15,11 +15,9 @@ jobs:
       with:
         node-version: 14
 
-    - name: Use .env file
-      env:
-        ENV_FILE: ${{ secrets.ENV_FILE }}
+    - name: Set up environment variables
       run: |
-        # Run your commands that use the .env file
+        echo "${{ secrets.ENV_FILE }}" > .env
 
     - name: Install playwright
       run: npx playwright install       
