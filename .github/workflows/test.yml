@@ -15,6 +15,12 @@ jobs:
       with:
         node-version: 14
 
+    - name: Use .env file
+      env:
+        ENV_FILE: .env
+      run: |
+        # Run your commands that use the .env file
+
     - name: Install playwright
       run: npx playwright install       
 
