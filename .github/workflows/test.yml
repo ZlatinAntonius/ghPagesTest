@@ -30,7 +30,7 @@ jobs:
 
     - name: Install Allure
       run: |
-        choco install allure-commandline
+        npm install allure-commandline
     - name: Generate Allure report
       run: npm run report
 
