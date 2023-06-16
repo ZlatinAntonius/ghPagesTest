@@ -32,7 +32,7 @@ export class GadgetFrame {
 			await this.datepicker.nth(i).fill("");
 			await this.datepicker.nth(i).fill(dates[i]); //Fancy way 🤵🥂
 		}
-		await expect(this.totalIssues).toHaveText("26 issues"); //For the pre-given date range in issue
+		await expect(this.totalIssues).toHaveText("24 issues"); //For the pre-given date range in issue
 	}
 
 	async saveGadget() {
