@@ -48,13 +48,24 @@ jobs:
         allure_report: allure-report
         allure_history: allure-history
 
-    - name: Deploy report to Github Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: allure-report
+          # Initialize temporary branch and upload report
+    - name: Initialize temporary branch
+      run: |
+        git checkout -B temp
+        git rm -r --cached .
+        git clean -df
+        git commit -m "Initialize temporary branch"
+        git push test temp
+        
+    # Move report to temporary branch and push changes
+    - name: Move report to temporary branch
+      run: |
+        git checkout temp
+        mv allure-report/* .
+        git add .
+        git commit -m "Upload report to temporary branch"
+        git push test temp
 
-      
+
+  
   
