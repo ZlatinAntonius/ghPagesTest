@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { test, chromium } from "@playwright/test";
 import "dotenv/config";
 import { POmanager } from "./PageObjects/POmanager";
 
@@ -99,7 +99,7 @@ test("@E2E Login to Jira", async ({ page }) => {
 	await page.pause();
 });
 
-test("@OOP Jira Test", async ({ page }) => {
+test("@OOP Jira Test", async () => {
 	// Define Test Payload
 	const email = process.env.USER_EMAIL;
 	const password = process.env.USER_PASSWORD;
