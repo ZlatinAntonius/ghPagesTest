@@ -49,11 +49,5 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./allure-report
-    
-    - name: Print GitHub Pages URL
-      run: |
-        echo "GitHub Pages URL: ${{ steps.get_url.outputs.url }}"
-    - name: Open GitHub Pages report
-      run: open ${{ steps.get_url.outputs.url }}
       
   
